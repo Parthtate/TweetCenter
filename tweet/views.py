@@ -16,7 +16,7 @@ def index(request):
 def all_tweet(request):
     tweets = Tweet.objects.all().order_by('-created_at')
     
-    return render(request, 'tweet/all_tweet.html', {'tweets': tweets})
+    return render(request, 'all_tweet.html', {'tweets': tweets})
 
 @login_required
 def tweet_create(request):
@@ -26,7 +26,7 @@ def tweet_create(request):
             tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
-            return redirect('tweet:all_tweet')
+            return redirect('all_tweet')
     else:
         form = TweetForm()
 
@@ -42,7 +42,7 @@ def tweet_edit(request, tweet_id):
             tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
-            return redirect('tweet:all_tweet')
+            return redirect('all_tweet')
     else:
         form = TweetForm(instance=tweet)
 
@@ -53,7 +53,7 @@ def tweet_delete(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id, user = request.user)
     if request.method == 'POST':
         tweet.delete()
-        return redirect('tweet:all_tweet')
+        return redirect('all_tweet')
     return render(request, 'tweet_confirm_delete.html', {'tweet': tweet})
 
 def register(request):
@@ -64,7 +64,7 @@ def register(request):
             user.set_password(form.cleaned_data['password1'])
             user.save()
             login(request, user)
-            return redirect('tweet:all_tweet')
+            return redirect('all_tweet')
     else:
         form = UserRegistrationForm()
 
