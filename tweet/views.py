@@ -26,11 +26,11 @@ def tweet_create(request):
             tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
-            return redirect('all_tweet')
+            return redirect('tweet:all_tweet')
     else:
         form = TweetForm()
 
-    return render(request, 'tweet_create.html', {'form': form})
+    return render(request, 'tweet/tweet_create.html', {'form': form})
 
 @login_required
 def tweet_edit(request, tweet_id):

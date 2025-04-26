@@ -25,7 +25,7 @@ from django.shortcuts import redirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tweet/', include('tweet.urls')),
-    path('acoounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', lambda request: redirect('tweet/')),
 
     path("__reload__/", include("django_browser_reload.urls")),
