@@ -30,7 +30,7 @@ def tweet_create(request):
     else:
         form = TweetForm()
 
-    return render(request, 'tweet/tweet_create.html', {'form': form})
+    return render(request, 'tweet_create.html', {'form': form})
 
 @login_required
 def tweet_edit(request, tweet_id):
@@ -42,7 +42,7 @@ def tweet_edit(request, tweet_id):
             tweet = form.save(commit=False)
             tweet.user = request.user
             tweet.save()
-            return redirect('all_tweet')
+            return redirect('tweet:all_tweet')
     else:
         form = TweetForm(instance=tweet)
 
@@ -53,7 +53,7 @@ def tweet_delete(request, tweet_id):
     tweet = get_object_or_404(Tweet, pk=tweet_id, user = request.user)
     if request.method == 'POST':
         tweet.delete()
-        return redirect('all_tweet')
+        return redirect('tweet:all_tweet')
     return render(request, 'tweet_confirm_delete.html', {'tweet': tweet})
 
 def register(request):
@@ -64,7 +64,7 @@ def register(request):
             user.set_password(form.cleaned_data['password1'])
             user.save()
             login(request, user)
-            return redirect('all_tweet')
+            return redirect('tweet:all_tweet')
     else:
         form = UserRegistrationForm()
 
