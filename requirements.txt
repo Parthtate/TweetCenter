@@ -1,0 +1,12 @@
+asgiref==3.8.1
+certifi==2025.4.26
+cloudinary==1.44.0
+crispy-bootstrap5==2025.4
+Django==5.2
+django-browser-reload==1.18.0
+django-crispy-forms==2.4
+pillow==11.2.1
+six==1.17.0
+sqlparse==0.5.3
+tzdata==2025.2
+urllib3==2.4.0
