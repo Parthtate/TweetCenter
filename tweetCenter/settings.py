@@ -28,7 +28,7 @@ import cloudinary.api
 SECRET_KEY = 'django-insecure-dw%lr5m09l)%!=l$33tcc9_w!ht7^%=83(2d8=y^o$exqi%^#&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tweetcenter.onrender.com', 'localhost', '127.0.0.1']
 
