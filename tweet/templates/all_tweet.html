@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block title %}
+Tweet Center
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-5">Tweet Center</h1>
+        <a class="btn btn-success btn-lg" href="{% url 'tweet_create' %}">
+            <i class="bi bi-plus-circle me-1"></i> New Tweet
+        </a>
+    </div>
+
+    {% if tweets %}
+    <div class="row g-4">
+        {% for tweet in tweets %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="card shadow h-100">
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top img-fluid" alt="Tweet Image" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">@{{ tweet.user.username }}</h5>
+                    <p class="card-text flex-grow-1">{{ tweet.text }}</p>
+                    <p class="text-muted small mt-2">{{ tweet.created_at|timesince }} ago</p>
+                    {% if tweet.user == user %}
+                    <div class="d-flex justify-content-between mt-2">
+                        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil"></i> Edit
+                        </a>
+                        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-sm btn-outline-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center my-5">
+        <i class="bi bi-twitter text-primary display-1 mb-3"></i>
+        <h3>No tweets yet</h3>
+        <p class="text-muted">Be the first to share your thoughts!</p>
+        <a href="{% url 'tweet_create' %}" class="btn btn-primary mt-3">Create a Tweet</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

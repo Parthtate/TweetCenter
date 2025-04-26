@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4">
+          <h3 class="text-center mb-4">
+            <i class="bi bi-person-plus-fill text-primary me-2"></i>Register
+          </h3>
+
+          <form method="post" novalidate>
+            {% csrf_token %}
+            
+            <div class="mb-3">
+              {{ form.username.label_tag }}
+              {{ form.username }}
+              {% if form.username.errors %}
+                <div class="text-danger small">{{ form.username.errors|striptags }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              {{ form.email.label_tag }}
+              {{ form.email }}
+              {% if form.email.errors %}
+                <div class="text-danger small">{{ form.email.errors|striptags }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_password1" class="form-label">Password</label>
+              <div class="input-group">
+                <input type="password" name="password1" class="form-control" id="id_password1">
+                <button class="btn btn-outline-secondary" type="button" id="togglePassword1">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              {% if form.password1.errors %}
+                <div class="text-danger small">{{ form.password1.errors|striptags }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="id_password2" class="form-label">Confirm Password</label>
+              <div class="input-group">
+                <input type="password" name="password2" class="form-control" id="id_password2">
+                <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
+                  <i class="bi bi-eye"></i>
+                </button>
+              </div>
+              {% if form.password2.errors %}
+                <div class="text-danger small">{{ form.password2.errors|striptags }}</div>
+              {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Create Account</button>
+          </form>
+
+          <div class="text-center mt-4">
+            <p class="mb-1">Already have an account?</p>
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-sm text-white">Login here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const togglePassword1 = document.getElementById('togglePassword1');
+    const password1 = document.getElementById('id_password1');
+    togglePassword1.addEventListener('click', function () {
+      const type = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+      password1.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('bi-eye');
+      this.querySelector('i').classList.toggle('bi-eye-slash');
+    });
+
+    const togglePassword2 = document.getElementById('togglePassword2');
+    const password2 = document.getElementById('id_password2');
+    togglePassword2.addEventListener('click', function () {
+      const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+      password2.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('bi-eye');
+      this.querySelector('i').classList.toggle('bi-eye-slash');
+    });
+  });
+</script> {% endcomment %}
+{% endblock %}
