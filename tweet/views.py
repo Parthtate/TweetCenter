@@ -16,7 +16,7 @@ def index(request):
 def all_tweet(request):
     tweets = Tweet.objects.all().order_by('-created_at')
     
-    return render(request, 'all_tweet.html', {'tweets': tweets})
+    return render(request, 'tweet/all_tweet.html', {'tweets': tweets})
 
 @login_required
 def tweet_create(request):
