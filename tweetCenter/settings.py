@@ -30,10 +30,10 @@ SECRET_KEY = 'django-insecure-dw%lr5m09l)%!=l$33tcc9_w!ht7^%=83(2d8=y^o$exqi%^#&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tweet-center.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['tweetcenter.onrender.com', 'localhost', '127.0.0.1']
 
 CSRF_TRUSTED_ORIGINS = [
-    'tweet-center.vercel.app',
+    'https://tweetcenter.onrender.com',
 ]
 
 
